@@ -51,18 +51,18 @@ async def get_updates():
                 )
             )
             feed = feed_.entries[0]
-            pic = "https://img.youtube.com/vi/{}/hqdefault.jpg".format(feed.yt_videoid)
+            pic = "".format(feed.yt_videoid)
             prev_ = redis_db.get("LAST_POST") or ""
             if feed.link != prev_:
-                msg = "**New Video Uploaded to** [YouTube](https://www.youtube.com/channel/{})!\n\n".format(
+                msg = "".format(
                     channelid
                 )
-                msg += f"**{feed.title}**\n\n"
+                msg += f""
                 link = feed.link
                 redis_db.set("LAST_POST", link)
                 try:
                     await sendMessage(
-                        msg, pic, buttons=Button.url("Watch Now!", url=link)
+                        msg, pic, buttons=Button.url("", url=link)
                     )
                     await asyncio.sleep(check_time)
                 except Exception as e:
